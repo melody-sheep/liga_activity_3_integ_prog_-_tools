@@ -1,0 +1,14 @@
+<?php
+
+use App\Http\Controllers\StudentController;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/test', function() {
+    return response()->json([
+        'success' => true,
+        'message' => 'API is working!',
+        'timestamp' => now()->toDateTimeString()
+    ]);
+});
+
+Route::apiResource('students', StudentController::class);
