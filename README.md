@@ -1,5 +1,4 @@
 
-```markdown
 # 🎓 Laravel API Projects - Activities 1, 2 & 3
 
 ---
@@ -139,7 +138,6 @@ CREATE TABLE students (
     created_at TIMESTAMP,
     updated_at TIMESTAMP
 );
-```
 
 ---
 
