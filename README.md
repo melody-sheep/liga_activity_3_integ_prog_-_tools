@@ -41,7 +41,7 @@ A fully functional **Authentication API** built with Laravel Sanctum featuring t
 
 ---
 
-### 🧪 ThunderClient Testing Screenshots
+### 🧪 Activity 3 — ThunderClient Testing Screenshots
 
 #### 1. 📝 Register Endpoint
 **POST** `http://127.0.0.1:8000/api/register`
@@ -87,19 +87,6 @@ A fully functional **Authentication API** built with Laravel Sanctum featuring t
   <em>✅ Logout invalidates the token</em>
 </p>
 
----
-
-#### 5. 📚 Student CRUD (Protected)
-**GET** `http://127.0.0.1:8000/api/students`  
-**Headers:** `Authorization: Bearer {token}`
-<p align="center">
-  <img src="./asset/image/screenshot/thunderclient-students.png" alt="Student CRUD" width="80%" />
-</p>
-<p align="center">
-  <em>✅ GET /api/students - Successfully retrieved all student records</em>
-</p>
-
----
 
 ### 💾 Database Structure
 
@@ -194,6 +181,20 @@ After testing, your database contains:
 
 ---
 
+### 🧪 Activity 2 — ThunderClient Testing Screenshot
+
+#### 📚 Student CRUD (Legacy)
+**GET** `http://127.0.0.1:8000/api/students`  
+**Headers:** `Authorization: Bearer {token}`
+<p align="center">
+  <img src="./asset/image/screenshot/thunderclient-students.png" alt="Student CRUD" width="80%" />
+</p>
+<p align="center">
+  <em>✅ GET /api/students - Successfully retrieved all student records</em>
+</p>
+
+---
+
 ## 📌 ACTIVITY 2: Student CRUD API (Legacy)
 
 A fully functional **RESTful API** built with Laravel that performs CRUD operations on student records featuring biblical names.
@@ -249,6 +250,21 @@ Response: [
 
 ## 📝 License
 This project is licensed under the MIT License.
+
+---
+
+### 🔐 Token Abilities (Sanctum)
+
+Student endpoints require a token with the `students.manage` ability. Create a token with abilities via Tinker or your controller like so:
+
+```bash
+php artisan tinker
+$user = App\\Models\\User::find(1)
+$token = $user->createToken('cli-token', ['students.manage'])
+echo $token->plainTextToken
+```
+
+Use the printed token as a Bearer token in requests to the protected student routes.
 ```
 
 ---

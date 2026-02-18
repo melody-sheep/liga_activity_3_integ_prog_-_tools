@@ -8,11 +8,12 @@ use App\Http\Controllers\StudentController;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
-// Protected routes (require token)
-Route::middleware('auth:sanctum')->group(function () {
+// Protected routes (require token + ability check for student routes)
+Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/user', [AuthController::class, 'user']);
-    
-    // Student routes (protected)
-    Route::apiResource('students', StudentController::class);
+
+    // Student routes (protected). Additionally require the token ability 'students.manage'.
+    Route::middleware('ability:students.manage')
+        ->apiResource('students', StudentController::class);
 });
